@@ -1,4 +1,4 @@
-# Super Galactic Age Calculator
+# Hungry Bear
 
 This app determines a user’s age based on a planet’s solar years.
 
@@ -8,7 +8,7 @@ Hisato Kawaminami
 
 ## Installation
 Clone from:
-https://github.com/hisatokawaminami/super_galactic_age_calculator.git
+https://github.com/hisatokawaminami/hungrybear.git
 
 
 

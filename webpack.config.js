@@ -15,7 +15,7 @@ devServer: {
 plugins: [
   new CleanWebpackPlugin(['dist']),
   new HtmlWebpackPlugin({
-    title: 'Super Galactic Age Calculator',
+    title: 'Hungry Bear',
     template: './src/index.html',
     inject: 'body'
   })
