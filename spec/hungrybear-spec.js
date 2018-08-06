@@ -15,8 +15,10 @@ describe('HungerBear', function() {
   beforeEach(function() {
     jasmine.clock().install();
     fuzzy.foodLevel = 10;
+    fuzzy.sleepLevel = 0;
     fuzzy.name = "Fuzzy";
     fuzzy.setHunger();
+    fuzzy.setSleepiness();
   });
 
 
@@ -46,8 +48,44 @@ describe('HungerBear', function() {
 
   it('should return that the bear ate blueberries and the food level should go up 5', function() {
     expect(fuzzy.eatSmall("blueberries")).toEqual("The bear ate the blueberries! Food level goes up 5!");
+    console.log(fuzzy.foodLevel);
     expect(fuzzy.foodLevel).toEqual(15);
   });
+
+  it('should return that the bear ate honey and the food level should go up 5', function() {
+    expect(fuzzy.eatSpecialBonus("honey")).toEqual("The bear ate the honey! Food level goes up 100!");
+    console.log(fuzzy.foodLevel);
+    expect(fuzzy.foodLevel).toEqual(110);
+  });
+
+  it('should return that the bear ate a steak and the food level should go up 15 at 9 seconds', function() {
+    expect(fuzzy.eatLarge("steak")).toEqual("The bear ate the steak! Food level goes up 15!");
+    jasmine.clock().tick(9001);
+
+    console.log(fuzzy.foodLevel);
+    expect(fuzzy.foodLevel).toEqual(16);
+  });
+
+  it('should have a sleepy level of 2 after 4001 milliseconds', function (){
+    jasmine.clock().tick(4001);
+    expect(fuzzy.sleepLevel).toEqual(2);
+    console.log(fuzzy.sleepLevel);
+  });
+
+  it('should have a sleepy level of 2 after 4001 milliseconds', function (){
+    jasmine.clock().tick(82001);
+    expect(fuzzy.sleepyBear()).toEqual(true);
+    console.log(fuzzy.sleepLevel);
+  });
+
+  // it('should return that the bear ate a weird thing and the food level should go up some random number', function() {
+  //   let test = fuzzy.eatWeirdThing("weird thing");
+  //   if (test > 1){
+  //     return true;
+  //   }
+  //   expect(test).toEqual(true);
+  //   console.log(fuzzy.foodLevel);
+  // });
 
   // it('should have a food level of ten if it is fed', function(){
   //   jasmine.clock().tick(9001);

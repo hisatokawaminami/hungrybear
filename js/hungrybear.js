@@ -1,5 +1,7 @@
 export let bear = {
   foodLevel: 10,
+  sleepLevel: 0,
+
   setHunger: function() {
     const hungerInterval = setInterval(() => {
       this.foodLevel--;
@@ -9,6 +11,7 @@ export let bear = {
       }
     }, 1000);
   },
+
   didYouGetEaten: function(){
     if (this.foodLevel > 0){
       return false;
@@ -16,14 +19,40 @@ export let bear = {
       return true;
     }
   },
+
   feed: function(amount){
     let that = this;
     return function(food) {
       that.foodLevel += amount
       return `The bear ate the ${food}! Food level goes up ${amount}!`
     }
+  },
+
+  setSleepiness: function() {
+    const sleepinessInterval = setInterval(() => {
+      this.sleepLevel++;
+      if (this.sleepyBear() == true){
+        clearInterval(sleepinessInterval);
+        return "Bear fell asleep";
+      }
+    }, 2000);
+  },
+
+  sleepyBear: function(){
+    if (this.sleepLevel > 40) {
+      return true;
+    }
   }
+
 };
+
+bear.eatSmall = bear.feed(5);
+bear.eatMedium = bear.feed(10);
+bear.eatLarge = bear.feed(15);
+bear.eatYuck = bear.feed(-10);
+bear.eatPowerUp = bear.feed(50);
+bear.eatSpecialBonus = bear.feed(100);
+bear.eatWeirdThing = bear.feed(Math.floor((Math.random() * 20) + 1));
 //
 // export class HungryBear{
 //   constructor(name){
